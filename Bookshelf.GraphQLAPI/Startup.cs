@@ -13,8 +13,7 @@ namespace Bookshelf.GraphQLAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Bookshelf.Infrastructure.AuthorContext>(options => options.UseSqlite("Data Source=database.sqlite"));
-            services.AddDbContext<Bookshelf.Infrastructure.BookContext>(options => options.UseSqlite("Data Source=database.sqlite"));
+            services.AddDbContext<Infrastructure.DatabaseContext>(options => options.UseSqlite("Data Source=database.sqlite"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

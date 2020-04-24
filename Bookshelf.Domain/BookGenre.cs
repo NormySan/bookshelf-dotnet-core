@@ -1,11 +1,11 @@
 ﻿namespace Bookshelf.Domain
 {
-    public class BookAuthor
+    public class BookGenre
     {
-        public int AuthorId { get; set; }
-        public Author Author { get; set; }
-
         public int BookId { get; set; }
         public Book Book { get; set; }
+
+        public int GenreId { get; set; }
+        public Genre Genre { get; set; }
     }
 }
