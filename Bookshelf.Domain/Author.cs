@@ -8,6 +8,6 @@ namespace Bookshelf.Domain
         public string Name { get; set; }
         public string Biography { get; set; }
 
-        public List<BookAuthor> Books;
+        public List<BookAuthor> Books { get; set; }
     }
 }

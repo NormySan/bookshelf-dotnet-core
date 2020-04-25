@@ -12,8 +12,8 @@ namespace Bookshelf.Domain
         
         public string ISBN { get; set; }
 
-        public List<BookGenre> Genres;
+        public List<BookGenre> Genres { get; set; }
 
-        public List<BookAuthor> Authors;
+        public List<BookAuthor> Authors { get; set; }
     }
 }
