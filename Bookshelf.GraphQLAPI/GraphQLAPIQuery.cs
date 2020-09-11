@@ -1,74 +1,77 @@
-﻿using Bookshelf.GraphQLAPI.Types;
-using Bookshelf.Infrastructure;
+﻿using Bookshelf.Application.Books.Queries;
+using Bookshelf.GraphQLAPI.Types;
 using GraphQL;
 using GraphQL.Types;
-using System.Linq;
+using MediatR;
 
 namespace Bookshelf.GraphQLAPI
 {
     public class GraphQLAPIQuery : ObjectGraphType
     {
-        public GraphQLAPIQuery(DatabaseContext database)
+        public GraphQLAPIQuery(IMediator mediator)
         {
             Name = "Query";
 
-            Field<AuthorType>(
+            FieldAsync<AuthorType>(
                 name: "author",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<IdGraphType>>() { Name = "id" }
                 ),
-                resolve: context =>
+                resolve: async context =>
                 {
                     var id = context.GetArgument<string>("id");
-                    return database.Authors.Single(author => author.Id == int.Parse(id));
+
+                    return await mediator.Send(new GetAuthorQuery(int.Parse(id)), context.CancellationToken);
                 }
             );
 
-            Field<ListGraphType<AuthorType>>(
+            FieldAsync<ListGraphType<AuthorType>>(
                 name: "authors",
-                resolve: context =>
+                resolve: async context =>
                 {
-                    return database.Authors.ToList();
+                    return await mediator.Send(new GetAuthorsQuery(), context.CancellationToken);
                 }
             );
 
-            Field<BookType>(
+            FieldAsync<BookType>(
                 name: "book",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<IdGraphType>>() { Name = "id" }
+                    new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id" }
                 ),
-                resolve: context =>
+                resolve: async context =>
                 {
                     var id = context.GetArgument<string>("id");
-                    return database.Books.Single(book => book.Id == int.Parse(id));
+
+                    return await mediator.Send(new GetBookQuery(int.Parse(id)), context.CancellationToken);
                 }
             );
 
-            Field<ListGraphType<BookType>>(
+            FieldAsync<ListGraphType<BookType>>(
                 name: "books",
-                resolve: context =>
+                resolve: async context =>
                 {
-                    return database.Books.ToList();
+                    return await mediator.Send(new GetBooksQuery(), context.CancellationToken);
                 }
             );
 
-            Field<GenreType>(
+            FieldAsync<GenreType>(
                 name: "genre",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<IdGraphType>>() { Name = "id" }
+                    new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id" }
                 ),
-                resolve: context =>
+                resolve: async context =>
                 {
                     var id = context.GetArgument<string>("id");
-                    return database.Genres.Single(genre => genre.Id == int.Parse(id));
+
+                    return await mediator.Send(new GetGenreQuery(int.Parse(id)), context.CancellationToken);
                 }
             );
 
-            Field<ListGraphType<GenreType>>(
+            FieldAsync<ListGraphType<GenreType>>(
                 name: "genres",
-                resolve: context =>
+                resolve: async context =>
                 {
-                    return database.Genres.ToList();
+                    return await mediator.Send(new GetGenresQuery(), context.CancellationToken);
                 }
             );
         }

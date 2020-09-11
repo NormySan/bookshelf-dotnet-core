@@ -3,7 +3,7 @@ using Bookshelf.Domain;
 
 namespace Bookshelf.Infrastructure
 {
-    public class BookRepository : IBookRepository
+    public class BookRepository
     {
         private readonly List<Book> books = new List<Book>();
 

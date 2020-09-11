@@ -1,11 +1,18 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelf.GraphQLAPI", "Bookshelf.GraphQLAPI\Bookshelf.GraphQLAPI.csproj", "{3FEFB015-D4C4-4808-BC04-DE2A3006CCD6}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelf.GraphQLAPI", "Bookshelf.GraphQLAPI\Bookshelf.GraphQLAPI.csproj", "{3FEFB015-D4C4-4808-BC04-DE2A3006CCD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelf.Infrastructure", "Bookshelf.Infrastructure\Bookshelf.Infrastructure.csproj", "{0865E07F-9F33-4DDE-BCE7-3C93AF3643C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelf.Infrastructure", "Bookshelf.Infrastructure\Bookshelf.Infrastructure.csproj", "{0865E07F-9F33-4DDE-BCE7-3C93AF3643C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelf.Domain", "Bookshelf.Domain\Bookshelf.Domain.csproj", "{405992CC-EC2E-48ED-8AB6-EC60F7E6948D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelf.Domain", "Bookshelf.Domain\Bookshelf.Domain.csproj", "{405992CC-EC2E-48ED-8AB6-EC60F7E6948D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelf.Application", "Bookshelf.Application\Bookshelf.Application.csproj", "{A1DC2B65-2C20-4C79-B49A-F76DAEC4CCF4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookshelf.Tests", "Bookshelf.Tests\Bookshelf.Tests.csproj", "{28AEDBE6-572D-4FC3-AC2D-D7735985F11F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookshelf.Web", "Bookshelf.Web\Bookshelf.Web.csproj", "{8200A85C-25F7-44FF-BA14-3D97FB63B193}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,5 +32,23 @@ Global
 		{405992CC-EC2E-48ED-8AB6-EC60F7E6948D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{405992CC-EC2E-48ED-8AB6-EC60F7E6948D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{405992CC-EC2E-48ED-8AB6-EC60F7E6948D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1DC2B65-2C20-4C79-B49A-F76DAEC4CCF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1DC2B65-2C20-4C79-B49A-F76DAEC4CCF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1DC2B65-2C20-4C79-B49A-F76DAEC4CCF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1DC2B65-2C20-4C79-B49A-F76DAEC4CCF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28AEDBE6-572D-4FC3-AC2D-D7735985F11F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28AEDBE6-572D-4FC3-AC2D-D7735985F11F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28AEDBE6-572D-4FC3-AC2D-D7735985F11F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28AEDBE6-572D-4FC3-AC2D-D7735985F11F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8200A85C-25F7-44FF-BA14-3D97FB63B193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8200A85C-25F7-44FF-BA14-3D97FB63B193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8200A85C-25F7-44FF-BA14-3D97FB63B193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8200A85C-25F7-44FF-BA14-3D97FB63B193}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A758DEF-6179-4F57-9C69-36DF32EDE1C2}
 	EndGlobalSection
 EndGlobal

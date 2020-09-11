@@ -1,23 +1,13 @@
 ﻿using Bookshelf.Domain;
-using Bookshelf.Infrastructure;
-using GraphQL.DataLoader;
 using GraphQL.Types;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Bookshelf.GraphQLAPI.Types
 {
     public class BookType : ObjectGraphType<Book>
     {
-        private DatabaseContext Database;
-
-        public BookType(DatabaseContext database, IDataLoaderContextAccessor accessor)
+        public BookType()
         {
-            Database = database;
-
             Name = "Book";
 
             Field(name: "id", book => book.Id, type: typeof(IdGraphType));
@@ -29,48 +19,21 @@ namespace Bookshelf.GraphQLAPI.Types
                 name: "authors",
                 resolve: context =>
                 {
-                    var id = context.Source.Id;
-
-                    var query = from author in database.Set<Author>()
-                                join bookAuthor in database.Set<BookAuthor>()
-                                    on author.Id equals bookAuthor.AuthorId
-                                where bookAuthor.BookId == id
-                                select author;
-
-                    return query.ToList();
+                    return context.Source.Authors
+                        .Select(bookAuthor => bookAuthor.Author)
+                        .ToList();
                 }
             );
 
-            FieldAsync<ListGraphType<GenreType>, List<Genre>>(
+            Field<ListGraphType<GenreType>>(
                 name: "genres",
                 resolve: context =>
                 {
-                    var loader = accessor.Context.GetOrAddBatchLoader<int, List<Genre>>("GetGenresByBookIds", GetGenresByBookIds);
-                    return loader.LoadAsync(context.Source.Id);
+                    return context.Source.Genres
+                        .Select(bookGenre => bookGenre.Genre)
+                        .ToList();
                 }
             );
         }
-
-        private async Task<IDictionary<int, List<Genre>>> GetGenresByBookIds(IEnumerable<int> bookIds)
-        {
-            var booksWithGenres = Database.Books
-                .Where(b => bookIds.Contains(b.Id))
-                .Select(b => new
-                {
-                    BookId = b.Id,
-                    Genres = b.Genres.Select(bg => bg.Genre),
-                });
-
-            var result = new Dictionary<int, List<Genre>>();
-
-            foreach (var item in booksWithGenres)
-            {
-                result.Add(item.BookId, item.Genres.ToList());
-            }
-
-            return result;
-        }
-
-
     }
 }

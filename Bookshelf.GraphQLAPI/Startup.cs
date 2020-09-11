@@ -1,3 +1,4 @@
+using Bookshelf.Application;
 using Bookshelf.Infrastructure;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
@@ -6,7 +7,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Bookshelf.GraphQLAPI
@@ -26,17 +26,19 @@ namespace Bookshelf.GraphQLAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DatabaseContext>(options =>
-            {
-                options.UseLoggerFactory(MyLoggerFactory);
-                options.UseSqlite("Data Source=../bookshelf.sqlite");
-            });
+            services.AddInfrastructure(MyLoggerFactory);
+            services.AddApplication();
 
             services.AddScoped<Types.AuthorType>();
             services.AddScoped<Types.BookType>();
             services.AddScoped<Types.GenreType>();
 
+            services.AddSingleton<Input.BookInputType>();
+
+            services.AddScoped<Loaders.BookLoader>();
+
             services.AddScoped<GraphQLAPIQuery>();
+            services.AddScoped<GraphQLAPIMutation>();
             services.AddScoped<ISchema, GraphQLAPISchema>();
 
             services
@@ -60,7 +62,7 @@ namespace Bookshelf.GraphQLAPI
             app.UseGraphQL<ISchema>("/graphql");
 
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions()
-            { 
+            {
                 GraphQLEndPoint = "/graphql",
                 Path = "/",
             });

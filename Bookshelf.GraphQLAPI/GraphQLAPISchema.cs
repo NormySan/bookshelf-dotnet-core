@@ -9,6 +9,7 @@ namespace Bookshelf.GraphQLAPI
         public GraphQLAPISchema(IServiceProvider provider) : base(provider)
         {
             Query = provider.GetRequiredService<GraphQLAPIQuery>();
+            Mutation = provider.GetRequiredService<GraphQLAPIMutation>();
         }
     }
 }
