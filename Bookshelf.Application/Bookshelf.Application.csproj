@@ -1,21 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
-
   <ItemGroup>
-    <Folder Include="Account\" />
-    <Folder Include="Reviews\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Bookshelf.Domain\Bookshelf.Domain.csproj" />
-    <ProjectReference Include="..\Bookshelf.Infrastructure\Bookshelf.Infrastructure.csproj" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

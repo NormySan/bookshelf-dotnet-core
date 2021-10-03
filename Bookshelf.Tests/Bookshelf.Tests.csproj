@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bookshelf.Application\Bookshelf.Application.csproj" />
+    <ProjectReference Include="..\Bookshelf.Application\Bookshelf.ApplicationOld.csproj" />
     <ProjectReference Include="..\Bookshelf.Domain\Bookshelf.Domain.csproj" />
   </ItemGroup>
 
