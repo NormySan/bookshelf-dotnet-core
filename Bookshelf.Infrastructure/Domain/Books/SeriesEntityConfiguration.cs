@@ -19,6 +19,11 @@ namespace Bookshelf.Infrastructure.Domain.Books
                 .IsRequired()
                 .HasColumnName("name")
                 .HasColumnType("text");
+
+            builder
+                .HasMany(series => series.Books)
+                .WithOne()
+                .HasForeignKey("series_id");
         }
     }
 }

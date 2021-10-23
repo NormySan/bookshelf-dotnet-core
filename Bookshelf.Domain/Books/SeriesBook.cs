@@ -1,11 +1,17 @@
 ﻿namespace Bookshelf.Domain.Books
 {
-    class SeriesBook
+    public class SeriesBook
     {
-        public int Id;
+        public int Id { get; set; }
 
-        public int BookId;
+        public int BookId { get; set; }
 
-        public int Order;
+        public int Order { get; set; }
+
+        public SeriesBook(int bookId, int order)
+        {
+            BookId = bookId;
+            Order = order;
+        }
     }
 }

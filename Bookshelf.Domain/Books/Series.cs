@@ -8,13 +8,12 @@ namespace Bookshelf.Domain.Books
 
         public string Name { get; set; }
 
-        public List<Book> Books { get; set; }
+        public List<SeriesBook> Books { get; set; }
 
         public Series(string name)
         {
             Name = name;
-
-            Books = new List<Book>();
+            Books = new List<SeriesBook>();
         }
     }
 }
