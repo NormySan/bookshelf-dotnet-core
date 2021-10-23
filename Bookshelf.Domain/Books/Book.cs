@@ -15,6 +15,8 @@ namespace Bookshelf.Domain.Books
 
         public int Pages { get; set; } = 0;
 
+        public double Rating { get; private set; } = 0;
+
         public DateTime Published { get; set; }
 
         public List<Author> Authors { get; set; }
@@ -29,6 +31,11 @@ namespace Bookshelf.Domain.Books
 
             Authors = new List<Author>();
             Genres = new List<Genre>();
+        }
+
+        public void SetRating(double rating)
+        {
+            Rating = Math.Clamp(rating, 0, 5);
         }
     }
 }
