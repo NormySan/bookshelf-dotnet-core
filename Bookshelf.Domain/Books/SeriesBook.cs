@@ -4,9 +4,9 @@
     {
         public int Id { get; set; }
 
-        public int BookId { get; set; }
+        public int BookId { get; }
 
-        public int Order { get; set; }
+        public int Order { get; }
 
         public SeriesBook(int bookId, int order)
         {
