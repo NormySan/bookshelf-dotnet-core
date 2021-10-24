@@ -21,7 +21,10 @@ namespace Bookshelf.Domain.Books
         public SortByOptions SortBy { get; }
         public SortDirection Direction { get; }
 
-        SortingOptions(SortByOptions sortBy, SortDirection direction)
+        SortingOptions(
+            SortByOptions sortBy = SortByOptions.None,
+            SortDirection direction = SortDirection.Ascending
+        )
         {
             SortBy = sortBy;
             Direction = direction;
@@ -32,6 +35,8 @@ namespace Bookshelf.Domain.Books
     {
         public Task<Book> GetByIdAsync(int id);
 
-        public Task<List<Book>> GetAllAsync(int limit, SortingOptions sorting);
+        public Task<List<Book>> GetAllAsync();
+
+        public Task<List<Book>> GetAllAsync(int limit, SortByOptions sortBy);
     }
 }
