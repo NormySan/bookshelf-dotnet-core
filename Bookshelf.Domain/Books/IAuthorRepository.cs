@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Bookshelf.Domain.Common;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Bookshelf.Domain.Books
 {
-    public interface IAuthorRepository
+    public interface IAuthorRepository : IRepository<Author>
     {
-        public Task<Author?> GetByIdAsync(int id);
+        public Task<Author[]> GetByIdsAsync(int[] ids);
 
         public Task<List<Author>> GetAllAsync();
     }

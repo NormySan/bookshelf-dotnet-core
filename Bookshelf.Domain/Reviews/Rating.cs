@@ -1,6 +1,14 @@
-﻿namespace Bookshelf.Domain.Reviews
+﻿using System;
+
+namespace Bookshelf.Domain.Reviews
 {
-    class Rating
+    public class Rating
     {
+        public readonly int Value;
+
+        Rating(int rating)
+        {
+            Value = Math.Clamp(rating, 1, 5);
+        }
     }
 }

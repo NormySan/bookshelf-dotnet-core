@@ -1,4 +1,5 @@
-﻿using Bookshelf.Domain.Books;
+﻿using Bookshelf.API.Books.Enum;
+using Bookshelf.Domain.Books;
 using HotChocolate.Types;
 
 namespace Bookshelf.API.Books
@@ -21,9 +22,12 @@ namespace Bookshelf.API.Books
 
             descriptor.Field("books")
                 .Type<NonNullType<ListType<NonNullType<BookType>>>>()
+                .Argument("sortBy", descriptor => descriptor.Type<SortByOptionsType>())
                 .Resolve((context) =>
                 {
-                    return context.Service<IBookRepository>().GetAllAsync();
+                    var sortBy = context.ArgumentValue<SortByOptions>("sortBy");
+
+                    return context.Service<IBookRepository>().GetAllAsync(10, sortBy);
                 });
         }
     }

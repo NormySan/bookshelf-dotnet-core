@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Bookshelf.Domain.Common;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Bookshelf.Domain.Reviews
 {
-    public interface IReviewRepository
+    public interface IReviewRepository : IRepository<Review>
     {
-        public Task<Review> GetByIdAsync(int id);
-
         public Task<List<Review>> GetAllByBookIdAsync(int bookId);
 
         public Task<double> GetRatingByBookIdAsync(int bookId);

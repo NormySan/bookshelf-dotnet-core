@@ -14,11 +14,11 @@ namespace Bookshelf.Domain.Reviews
 
         public DateTime CreatedAt { get; }
 
-        public Review(int bookId, string content, int rating)
+        public Review(int bookId, string content, Rating rating)
         {
             BookId = bookId;
             Content = content;
-            Rating = Math.Clamp(rating, 1, 5);
+            Rating = rating.Value;
             CreatedAt = new DateTime();
         }
     }

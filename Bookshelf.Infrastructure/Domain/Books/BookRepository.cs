@@ -15,32 +15,64 @@ namespace Bookshelf.Infrastructure.Domain.Books
             this.context = context;
         }
 
+        public async Task<Book> Add(Book entity)
+        {
+            await context.Books.AddAsync(entity);
+            await context.SaveChangesAsync();
+
+            return entity;
+        }
+
+        public async Task AddAsync(Book entity)
+        {
+            await context.Books.AddAsync(entity);
+            await context.SaveChangesAsync();
+        }
+
         public Task<List<Book>> GetAllAsync()
         {
             return context.Books.ToListAsync();
         }
 
-        public Task<List<Book>> GetAllAsync(int limit, SortByOptions sortBy)
+        public Task<List<Book>> GetAllAsync(int limit, SortByOptions? sortBy = null)
         {
             var query = context.Books;
 
-            switch (sortBy)
+            if (sortBy != null)
             {
-                case SortByOptions.Latest:
-                    query.OrderBy(book => book.Published);
-                    break;
+                switch (sortBy)
+                {
+                    case SortByOptions.Latest:
+                        query.OrderBy(book => book.Published);
+                        break;
 
-                case SortByOptions.Rating:
-                    query.OrderBy(book => book.Rating);
-                    break;
+                    case SortByOptions.Rating:
+                        query.OrderBy(book => book.Rating);
+                        break;
+                }
             }
 
-            return query.ToListAsync();
+            return query.Take(limit).ToListAsync();
         }
 
-        public Task<Book> GetByIdAsync(int id)
+        public async Task<Book?> GetByIdAsync(int id)
         {
-            return context.Books.SingleOrDefaultAsync(book => book.Id == id);
+            var book = await context.Books.SingleOrDefaultAsync(book => book.Id == id);
+
+            if (book == null)
+            {
+                return null;
+            }
+
+            return book;
+        }
+
+        public async Task<Book> Update(Book entity)
+        {
+            context.Books.Update(entity);
+            await context.SaveChangesAsync();
+
+            return entity;
         }
     }
 }

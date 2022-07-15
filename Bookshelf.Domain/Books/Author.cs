@@ -10,7 +10,9 @@ namespace Bookshelf.Domain.Books
 
         public string? Biography { get; set; } = null;
 
-        private List<Book> Books { get; set; }
+        // This needs to be here because of Entity Framework. Remove when
+        // shadow navigation is possible with many-to-many relationships.
+        private readonly List<Book> Books = new List<Book>();
 
         public Author(string name)
         {

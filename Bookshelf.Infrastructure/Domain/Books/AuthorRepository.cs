@@ -14,14 +14,34 @@ namespace Bookshelf.Infrastructure.Domain.Books
         {
             this.context = context;
         }
+
+        public Task<Author> Add(Author entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Task<List<Author>> GetAllAsync()
         {
             return context.Authors.ToListAsync();
         }
 
-        public Task<Author?> GetByIdAsync(int id)
+        public async Task<Author?> GetByIdAsync(int id)
         {
-            return context.Authors.Where(author => author.Id == id).FirstOrDefaultAsync();
+            var author = await context.Authors
+                .Where(author => author.Id == id)
+                .FirstOrDefaultAsync();
+
+            return author ?? null;
+        }
+
+        public Task<Author[]> GetByIdsAsync(int[] ids)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<Author> Update(Author entity)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
