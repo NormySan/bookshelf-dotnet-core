@@ -6,7 +6,7 @@ namespace Bookshelf.Domain.Reviews
     {
         public readonly int Value;
 
-        Rating(int rating)
+        public Rating(int rating)
         {
             Value = Math.Clamp(rating, 1, 5);
         }

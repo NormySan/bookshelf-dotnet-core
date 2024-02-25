@@ -37,13 +37,13 @@ namespace Bookshelf.Application.Reviews.Commands
             Mediator = mediator;
         }
 
-        public async Task<int> Handle(AddReviewCommand command)
+        public async Task<int> Handle(AddReviewCommand command, CancellationToken cancellationToken)
         {
             var review = new Review(command.BookId, command.Content, command.Rating);
 
             await ReviewRepository.Add(review);
 
-            Mediator.Publish(new ReviewAddedEvent(review.BookId, review.Id));
+            await Mediator.Publish(new ReviewAddedEvent(review.BookId, review.Id), cancellationToken);
 
             return review.Id;
         }

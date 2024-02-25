@@ -8,9 +8,9 @@ namespace Bookshelf.Domain.Reviews
 
         public int BookId { get; }
 
-        public string Content { get; }
+        public string Content { get;  }
 
-        public int Rating { get; }
+        public Rating Rating { get; }
 
         public DateTime CreatedAt { get; }
 
@@ -18,7 +18,7 @@ namespace Bookshelf.Domain.Reviews
         {
             BookId = bookId;
             Content = content;
-            Rating = rating.Value;
+            Rating = rating;
             CreatedAt = new DateTime();
         }
     }

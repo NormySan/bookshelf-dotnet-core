@@ -23,7 +23,12 @@ namespace Bookshelf.Infrastructure.Domain.Reviews
 
             builder.Property(review => review.Rating)
                 .HasColumnName("rating")
+                .HasConversion(
+                    rating => rating.Value,
+                    value => new Rating(value)
+                )
                 .IsRequired();
+             
         }
     }
 }
